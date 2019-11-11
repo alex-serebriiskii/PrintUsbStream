@@ -4,12 +4,13 @@
 import serial, string
 
 output = " "
-ser = serial.Serial('/dev/ttyUSB0')
+ser = serial.Serial()
+ser.port = '/dev/ttyUSB0'
 ser.baudrate = 9600
 ser.open
-output = ""
+output = " "
 while True:
-   print "----"
+   print ("----")
    while output != "":
      output = ser.readline()
      print (output)
