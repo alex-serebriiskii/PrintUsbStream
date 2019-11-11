@@ -1,3 +1,4 @@
+#Based on https://www.raspberrypi.org/forums/viewtopic.php?t=106468
 import serial, string
 
 output = " "
