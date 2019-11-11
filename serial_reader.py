@@ -3,11 +3,8 @@
 
 import serial, string
 
-output = " "
-ser = serial.Serial()
-ser.port = '/dev/ttyUSB0'
-ser.baudrate = 9600
-ser.open
+ser = serial.Serial('/dev/ttyUSB0', 9600)
+print(ser.name) 
 output = " "
 while True:
    print ("----")
