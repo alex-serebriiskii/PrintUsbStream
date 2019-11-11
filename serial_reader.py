@@ -5,6 +5,8 @@ import serial, string
 
 output = " "
 ser = serial.Serial('/dev/ttyUSB0')
+ser.baudrate = 9600
+ser.open
 print(ser.name)
 # while True:
 #   print "----"
