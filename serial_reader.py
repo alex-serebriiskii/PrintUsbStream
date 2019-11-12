@@ -3,7 +3,7 @@
 
 import serial, string
 
-ser = serial.Serial('/dev/ttyUSB0', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 9600, 8, 'N', 1)
 print(ser.name) 
 output = " "
 while True:
