@@ -3,12 +3,24 @@
 
 import serial, string
 
-ser = serial.Serial('/dev/ttyUSB0', 9600, 8, 'N', 1)
-print(ser.name) 
-output = " "
-while True:
-   print ("----")
-   while output != "":
-     output = ser.readline()
-     print (output)
-   output = " "
+path = '/home/alex/test.txt'
+
+def main():
+  file = open(path, 'w')
+  if(filewriter(file)):
+    file.close
+
+def filewriter(file):
+  ser = serial.Serial('/dev/ttyUSB0', 9600, 8, 'N', 1)
+  print(ser.name) 
+  output = " "
+  while True:
+    print ("####New Transmission####\n")
+    while output != "":
+      output = ser.readline()
+      file.write(output.decode('UTF8'))
+      print (output)
+    print("#### End of Transmission####\n")
+    return True
+    output = " "
+main()
