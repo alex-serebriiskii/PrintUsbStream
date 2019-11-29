@@ -5,6 +5,7 @@ import serial, string, time, os, getpass
 
 user = os.getlogin()
 path = '/home/%s/test.txt' %(user)
+printcommand = 'lpr %s'%(path)
 ser = serial.Serial('/dev/ttyUSB0', 9600, 8, 'N', 1)
 ser.timeout = 10
 def main():
@@ -28,7 +29,7 @@ def filewriter():
         if contenttoprint == True:
           print("printing")
           file.close()
-          #os.system("lpr /home/alex/test.txt")
+          os.system(printcommand)
           #print something here
           file = open(path, 'wb')
         contenttoprint = False
