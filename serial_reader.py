@@ -22,10 +22,10 @@ def filewriter():
     print ("####New Transmission####\n")
     while output != "":
       output = ser.readline()
-      print (output)
+      #print (output)
       file.write(output)
       if(output == b''):
-        print("Output is empty")
+        #print("Output is empty")
         if contenttoprint == True:
           print("printing")
           file.close()
@@ -34,6 +34,7 @@ def filewriter():
           file = open(path, 'wb')
         contenttoprint = False
       else:
+        print(output)
         contenttoprint = True
 
     print("#### End of Transmission####\n")
