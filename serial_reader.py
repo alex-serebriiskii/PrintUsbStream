@@ -27,7 +27,7 @@ def filewriter():
         if contenttoprint == True:
           print("printing")
           file.close()
-          os.system("lpr /home/alex/test.txt")
+          #os.system("lpr /home/alex/test.txt")
           #print something here
           file = open(path, 'wb')
         contenttoprint = False
