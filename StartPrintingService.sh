@@ -9,5 +9,7 @@ then
     ./serial_reader.py
     popd
 else
-    echo "Failed to detect proper service setup, please run env_setup.sh"
+    echo "Failed to detect proper service setup"
+    echo "Running setup script..."
+    ./env_setup.sh
 fi
