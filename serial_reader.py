@@ -15,7 +15,7 @@ def main():
 def filewriter():
   
   file = open(path, 'wb')
-  contenttoprint = False;
+  contenttoprint = False
   #print(ser.name) 
   output = " "
   while True:
