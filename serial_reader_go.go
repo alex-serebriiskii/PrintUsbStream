@@ -1,4 +1,4 @@
-package main
+package PrintUsbStream
 
 import (
 	"fyne.io/fyne/app"
