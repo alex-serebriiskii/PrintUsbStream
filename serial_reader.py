@@ -4,7 +4,7 @@
 import serial, string, time, os, getpass
 
 user = getpass.getuser()
-path = '/home/%s/test.txt' %(user)
+path = '/tmp/radiooutput'
 printcommand = 'lp %s'%(path)
 ser = serial.Serial('/dev/ttyUSB0', 9600, 8, 'N', 1)
 ser.timeout = 10

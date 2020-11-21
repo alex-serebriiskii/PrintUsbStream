@@ -43,7 +43,7 @@ fi
 
 echo "Converting Script to Service"
 
-if [ -f "/etc/systemd/system/USB_Radio.service"]; then
+if [ -f "/etc/systemd/system/USB_Radio.service" ]; then
     #remove version of the service
     sudo rm /etc/systemd/system/USB_Radio.service
     #TODO find and kill previous version of service if there is one
@@ -52,23 +52,39 @@ fi
 touch ./USB_Radio.service
 
 echo "[Unit]" >> USB_Radio.service
-echo "Description=A description for your custom service goes here " >> USB_Radio.service
+echo "Description=Prints input off of a serial connection " >> USB_Radio.service
 echo "After=network.target" >> USB_Radio.service
-
+echo "" >>USB_Radio.service
 echo "[Service]" >> USB_Radio.service
-echo "Type=simple" >> USB_Radio.service
+echo "Type=forking" >> USB_Radio.service
 echo "ExecStart=/usr/bin/python3 /home/$USER/RadioSerialPrinter/PrintUsbStream/serial_reader.py" >> USB_Radio.service
 echo "TimeoutStartSec=0" >> USB_Radio.service
-
+echo "" >>USB_Radio.service
 echo "[Install]" >> USB_Radio.service
 echo "WantedBy=default.target" >> USB_Radio.service
 #end file creation 
 
 echo "Setting up service to run on reboot"
-#sudo mv ./USB_Radio.service /etc/system/systemd
-#sudo systemctl enable USB_Radio.service
-#TODO check if service was created properly
-#systemctl start USB_Radio.service
+sudo mv ./USB_Radio.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable USB_Radio.service
+#check if service was created
+if systemctl -all|grep -q USB_Radio; then
+    echo "Service created"
+else
+    echo "Service creation failed, please rerun the script"
+    exit
+fi
+
+sudo systemctl start USB_Radio.service &
+#check if service is running
+if systemctl is-active --quiet USB_Radio; then
+    echo "Failed to start service, please rerun the set up script"
+    exit 1
+else
+    echo "Service is created and running"
+fi
+
 
 echo "Please set up the printer.."
 chromium-browser http://localhost:631/admin &
